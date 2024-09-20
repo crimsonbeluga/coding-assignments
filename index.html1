@@ -4,9 +4,19 @@
         <title>CS102 Home Page</title>
     </head>
     <body>
-        <h1>Welcome to my CSC102 home page</h1>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Board.html">Boards</a></li>
+                </ul>
         <p>
             <img id="sigma" src="sigma.jpeg">
         </p>
+        <footer>logan <br> 
+        university of advancing technology <br> 
+         2625 W Baseline Rd <br>
+         Tempe AZ 85283 <br>
+    </footer>
     </body>
 </html>
