@@ -1,4 +1,4 @@
-!--logan green,september 18th 20244 -->
+<!--logan green,september 18th 20244 -->
 <!--DOCTYPE this is the first tag on the page and it tells the browser that this is an html-->
 <!DOCTYPE html>
 <!--the html tag goes next-->
@@ -9,6 +9,12 @@
     </head>
     <!--the body section holds the text and images that we want to show the user-->
     <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Board.html">Boards</a></li>
+                </ul>
         <h1>Welcome to my CSC102 home page</h1>
         <!--p is paragraph tag; has spacing around it by default-->
         <p>
@@ -43,6 +49,11 @@ polished and completed projects.
             <!--p is paragraph tag; has spacing around it by default-->
         </p>
         <!--the body section holds the text and images that we want to show the user-->
+        <footer>logan <br> 
+            university of advancing technology <br> 
+             2625 W Baseline Rd <br>
+             Tempe AZ 85283 <br>
+        </footer>
     </body>
     
 </html>
