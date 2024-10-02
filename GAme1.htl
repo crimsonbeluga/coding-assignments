@@ -1,0 +1,79 @@
+<!-- This will be an underwater base management game -->
+<!-- submitting two different versions of this assignment. one will be my faulty one with all the notes and lines of code and one will be the fixed one
+ This one will highlight what i did wrong to show i learned and understood where i went wrong
+ A LOT of this i just learned by myself doing research and i do not fully understand certain aspects of it cause i am just begginning to learn how to do this. if you want to add
+ any useful tips or explanations i would greatly appreciate it. -->
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <title>Under Water Base Alpha Simulation</title> <!-- i made a grammatical error when typing the name of my game (refer to faulty code) -->
+     <meta charset="utf-8">
+ </head>
+ <body>
+ <header>
+     <h1>Welcome To Under Water Base Sigma</h1>
+     <p>Here you will be in charge of an underwater base. You will manage resources, build out the base, and keep your researchers alive.</p>
+ </header>
+ 
+ <main id="game-area"> <!--was supposed to add an id atribute to the main tag to easily identify it for javascript (refer to old code)-->
+     <button onclick="simulateDay()">Simulate a Day</button>
+ </main>
+ 
+ <script>
+     var energy = 100; // Initial amount that we are starting with
+     var food = 50; // Initial amount of food we have
+     var water = 50; // Initial amount of water we have
+     var population = 10; // Initial amount of researchers
+     var dayCounter = 0;
+ 
+     function produceEnergy() {
+         energy += 10;
+     }
+ 
+     function consumeResources() {
+         food -= population;
+         water -= population;
+     }
+ 
+     function buildModule() {
+         if (energy >= 20) {
+             energy -= 20;
+             population += 5;
+         }
+     }
+ 
+     function simulateDay() {
+         dayCounter++; // Changed daycounter to dayCounter for consistency. I learned that JavaScript is very case sensitive and consistently naming things is important. 
+         // refer to faulty code to see this
+         
+         // Removed incorrect line about case sensitivity.
+         document.querySelector("#game-area").innerHTML += "<h2>Day " + dayCounter + "</h2>";
+         document.title = "Simulating Day " + dayCounter;
+ 
+         buildModule(); // my build module function was inside my consume resources function which was making it not accessible and led to problems or confusion (refer to faulty code)
+         produceEnergy();
+         consumeResources();
+ 
+         if (Math.random() > 0.5) {
+             buildModule();
+         }
+ 
+         displayStatus(); // I used displayStatus multiple times because I did not fully understand I only needed it once (refer to faulty code)
+     }
+ 
+     // Fixed the issue with statusHTML so it displays correctly although I do not fully understand what I did wrong here and would like clarity (refer to faulty code)
+     function displayStatus() {
+         var statusHTML = ` 
+             <h2>Under Water Base Status</h2>
+             <p>Energy: ${energy}</p>
+             <p>Food: ${food}</p>
+             <p>Water: ${water}</p>
+             <p>Population: ${population}</p>
+         `;
+         document.querySelector("#game-area").innerHTML += statusHTML; // i used querySelector wrong litteraly so much (refer to faulty code)
+     }
+ </script>
+ </body>
+ </html>
+ 
