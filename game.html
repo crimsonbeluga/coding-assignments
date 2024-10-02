@@ -1,0 +1,127 @@
+<!-- this will be a under water base management game-->
+<!--start with the document type-->
+<!DOCTYPE html>
+<!-- next start out html start and ending tags-->
+<html> <!-- this is the start of the html page-->
+    <!--add a head tag--> 
+    <head> 
+<!--title tag-->
+<title> under water base alpha simulation</title>
+<!--add the meta tag-->
+<!---->
+<meta charset="utf-8">
+    </head>
+    <!-- addd the body tag-->
+    <body>
+<!--add our header section-->
+<header>
+    <!--create a header tag-->
+    <h1> Welcome To under water base SIgma</h1>
+    <!-- create a paragraph tag-->
+     <p> Here you will be in charge of an under water base. you will be forced to manage resources build our the base and keep your researchers alive</p>
+</header>
+<!--Add our main java script section-->
+<script> 
+    // everything inside this script tag will be java script.
+    //we have left html land 
+    //we will start by creating a variable to hold our main element
+    var energy = 100; // initial amount that we are starting with
+    var food = 50; //initial amount of food we have
+    var water = 50; //intial amiut of water we have
+    var population=10; // initial amount of researchers
+    var daycounter=0;
+
+    // create a function that will produce energy
+    function produceEnergy() { // this ia the starting scope opperator for our function 
+        //increase our base energy by ten each time we call this function
+        //energy+=10
+        energy=energy+10;
+    } // this is the ending scope operator
+    // create a function that will consume daily resources
+    function consumeresources() {
+        // each person on are basse will consume one unit of food and one unit of water each day
+        food=food-population;
+        water=water-population;
+        //create a function that will build a new module for people in are population
+        function buildmodule() {
+            //chech if we have enough energy to build a module
+            if (energy >=20){}
+            energy=energy-20;
+            //since we built a new moduule we can now support 5 more people on are base
+            population=population+5
+
+            // if we have enough energy build a new module and deduct the energy cost
+        } // this is the ending scope operator of are statement
+// add the current energy status to our current html string.
+statusHTML=statusHTML + "<p>Energy;" + energy + "</p>";
+//add the current food status to our html string
+    statusHTML=statusHTML + "<p>Food:"+ food + "</p>";
+    // add the current water status  to our html string
+    statusHTML =statusHTML + "<p>Water"+water +"</p>"
+// display the status of our moon base to the html page
+document.querySelector("main").innerHTML=statusHTML;
+// create a function to simulate 24 hours with in the base
+    }
+    function simulateDay() { 
+        dayCounter=dayCounter+1;
+        document.querySelector("main").innerHTML+="<h2>"+dayCounter+"</h2>";
+// write out the html title to simulate a day when the button is clicked
+document.title = "simulating a Day" + dayCounter;
+//build a new module for are base population
+buildmodule();
+//produce energy for the day
+produceEnergy();
+//consume resources for the day
+consumeResources();
+//lets make a random chance that builds a new module
+if (Math.random()>0.5) { //this is the starting scope operator for are statement
+    //if we have enough energy build a new module
+    //and deduct the energy cost for building the module
+    buildmodule();
+}
+function displayStatus() {
+    var statusHTML = `<h2>Moonbase Status</h2>
+                      <p>Energy: ${energy}</p>
+                      <p>Food: ${food}</p>
+                      <p>Water: ${water}</p>
+                      <p>Population: ${population}</p>`;
+    document.querySelector("main").innerHTML += statusHTML;
+}
+
+
+}
+    
+// Function to update the display
+function updateDisplay() {
+        // Create the HTML for the game status
+        const statusHTML = `
+            <h2>Moonbase Status - Day ${DayCounter}</h2>
+            <p>Energy: ${energy}</p>
+            <p>Food: ${food}</p>
+            <p>Water: ${water}</p>
+            <p>Population: ${population}</p>
+            <button onclick="simulateDay()">Simulate a Day</button>
+            <button onclick="produceEnergy(10)">Produce Energy (+10)</button>
+            <button onclick="buildModule()">Build Module (Cost: 20 Energy)</button>
+        `;
+        // Update the game area with the new status
+        document.getElementById('game-area').innerHTML = statusHTML;
+    }
+    
+//create a function that wil display the current status of are underwater base
+function displaystatus () {
+    // display the current status of are under water base to our html page
+    //create a variable that will hold are html screen
+var statusHTML= "<h2>Moonbase Status</h2>";
+}
+updatedisplay();
+</script> <!--this is the ending scope operator for our script -->
+<!-- this means we are back inside html-->
+<!-- add our main section-->
+
+ <main> 
+    <!--Create a button tag-->
+    <button onclick="simulateDay()">Simulate a Day</button>
+ </main>
+    </body>
+</html>
