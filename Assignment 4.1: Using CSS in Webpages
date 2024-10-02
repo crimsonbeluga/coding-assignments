@@ -1,0 +1,39 @@
+/* 
+declaration block: 
+
+selector{
+Property: value;
+property2: value;
+}
+*/
+
+
+body{
+    Background-color: rgb(0, 0, 255);
+    color: rgb(255, 255, 255);
+}
+
+nav{
+    height: 600px ;
+    width: 200px;
+    float: left;
+    padding: 5px;
+line-height: 30px;
+}
+
+footer{ 
+    text-align: center; 
+    margin-right: 200px;
+    
+}
+
+#mem image{
+    margin-right: 200px;
+    width: 400px;
+
+}
+
+h1{
+    text-align: center;
+    
+}
