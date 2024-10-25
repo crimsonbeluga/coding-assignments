@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <header>
-            <h1>Deathstar registration</h1>
-            <P> you will use this computer to register that you are on the death star</P>
-        </header>
-        <main>
-<h2>Registration Form</h2>
-        </main>
-        <footer>
+ <head>
+    <title>Nostromo Spaceship Registration</title>
+</head>
+<body>
+    <header>
+        <h1>*** Nostromo Spaceship Registration ***</h1>
+        <p>Welcome to one of the thousands of computers on the Nostromo</p>
+    </header>
+    <main>
+        <hr/>
+        <h2>Registration Form</h2>
+        <!-- create a label and input box for the first name -->
+        <label>First Name:</label><br/>
+        <input type="text" id="FirstName"><br/>
+        <!-- create a label for the last name -->
+        <label>Last Name:</label><br/>
+        <input type="text" id="LastName"><br/>
+        <!-- Nostromo Colonist ID -->
+        <label>Nostromo Colonist ID:</label><br/>
+        <input type="text" id="NostromoColonistid"><br/>
+        <hr/>
+        <!-- create a button for users to submit -->
+        <button onclick="checkForm()">Submit Form</button>
+        <!-- notice we are leaving HTML and going into JavaScript -->
+        <script>
+            // now we are in JavaScript
+            // Create a function to check the Nostromo Registration Form
+            // Check if the variable has more than >20 characters and give a warning
+            // warning - do not continue if program is invalid
+            function checkForm() {
+                // get the first name from the form
+                var FirstName = document.getElementById("FirstName").value;
+                // get the last name from the form
+                var LastName = document.getElementById("LastName").value;
+                // get the Nostromo Colonist ID from the form
+                var NostromoColonistid = document.getElementById("NostromoColonistid").value;
+                
+                // check if the first name is more than 20 characters
+                if (FirstName.length > 20) {
+                    alert("First Name is too long for a colonist. Please enter a name less than 20 characters.");
+                    return;
+                }
 
-        </footer>
-    </body>
+                // check if any fields are empty
+                if (FirstName === "" || LastName === "" || NostromoColonistid === "") {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                // lets combine the first name and last name and display it
+                var FullName = FirstName + " " + LastName;
+                alert("Welcome to the Nostromo " + FullName + " with Nostromo ID: " + NostromoColonistid);
+            }
+        </script>
+        <!-- now we are back in HTML -->
+    </main>
+    <footer>
+        <!-- Footer content can go here -->
+    </footer>
+</body>
 </html>
