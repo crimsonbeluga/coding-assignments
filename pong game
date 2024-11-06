@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ping Pong</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: darkgreen;
+    }
+    canvas {
+        background: darkgreen; 
+        display: block;
+        margin: 0 auto;
+        border: 2px solid white;
+    }
+</style>
+</head>
+<body>
+    <!-- Canvas element that we will use to draw our game -->
+    <canvas id="PongCanvas" width="800" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("PongCanvas");
+const context = canvas.getContext("2d"); // Corrected from getcontext to getContext()
+
+// Constants for paddles and ball
+const paddleWidth = 10;
+const paddleHeight = 100;
+const ballRadius = 10;
+
+// Game state variables
+let playerPaddleY = canvas.height / 2 - paddleHeight / 2;
+let aiPaddleY = (canvas.height - paddleHeight) / 2;
+let ballX = canvas.width / 2;
+let ballY = canvas.height / 2;
+let ballSpeedX = 4;
+let ballSpeedY = 4;
+
+// Draw the game elements (paddles, ball)
+function drawGameElements() {
+    // Clear the screen
+    context.fillStyle = "darkgreen"; 
+    context.fillRect(0, 0, canvas.width, canvas.height); // Fixed fillRect parameters
+
+    // Draw the player paddle (left side)
+    context.fillStyle = "white"; 
+    context.fillRect(0, playerPaddleY, paddleWidth, paddleHeight);
+
+    // Draw the AI paddle (right side)
+    context.fillStyle = "white";
+    context.fillRect(canvas.width - paddleWidth, aiPaddleY, paddleWidth, paddleHeight);
+
+    // Draw the ball
+    context.beginPath();
+    context.arc(ballX, ballY, ballRadius, 0, Math.PI * 2); 
+    context.fillStyle = "white";
+    context.fill();
+    context.closePath();
+}
+
+// Move the game elements
+function move() {
+    // Move the ball
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    // Bounce the ball off the top and bottom edges
+    if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
+        ballSpeedY = -ballSpeedY;
+    }
+
+    // Handle ball and paddle collision
+    if (ballX - ballRadius < paddleWidth) {
+        if (ballY > playerPaddleY && ballY < playerPaddleY + paddleHeight) {
+            ballSpeedX = -ballSpeedX; // Ball hits player paddle
+        }
+    }
+
+    // Make the AI paddle follow the ball (simple AI)
+    aiPaddleY = ballY - paddleHeight / 2; 
+
+    // Ball out of bounds logic
+    if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
+        // Reset ball position (you can add scoring here)
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballSpeedX = -ballSpeedX; // Change direction
+    }
+}
+
+// Player control with mouse movement
+canvas.addEventListener('mousemove', event => {
+    const canvasPosition = canvas.getBoundingClientRect();
+    playerPaddleY = event.clientY - canvasPosition.top - paddleHeight / 2;
+});
+
+// Game loop function to update and redraw game elements
+function gameLoop() {
+    move();
+    drawGameElements();
+    requestAnimationFrame(gameLoop); // Repeat the game loop
+}
+
+// Start the game loop
+gameLoop();
+
+</script>
+</body>
+</html>
