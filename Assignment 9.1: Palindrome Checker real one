@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hangman is Here</title>
+    <style>
+        /* Add basic styling here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 2rem;
+            background-color: darkgreen; 
+        }
+        /*this will apply to the entire body except anything i override */
+        h1 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+        .game-container {
+            background-color: lightgreen;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /*make the underscore section look better*/
+        #word-display {
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        #guess-input {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            width: 50px;
+            text-align: center;
+            margin: 1rem;
+        }
+
+        #guess-button {
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            background-color: lightslategray; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #guess-button:hover {
+            background-color: green;
+        }
+
+        #message {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            min-height: 1.5rem;
+        }
+
+        #guesses-left, #guessed-letters {
+            font-size: 1.2rem;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Create a header -->
+    <header>
+        <h1>The Hangman is Here</h1>
+    </header>
+    <!-- Create a main container for our game -->
+    <main class="game-container">
+        <!-- Create an area for the word underscores -->
+        <div id="word-display"></div>
+        <!-- Create an input field for letter guesses -->
+        <input type="text" id="guess-input" maxlength="1" placeholder="A">
+        <!-- We want a button to submit our guesses -->
+        <button id="guess-button">Guess!</button>
+        <!-- Create an area to display game messages to the user -->
+        <div id="message"></div>
+        <!-- Display the guesses remaining -->
+        <div id="guesses-left"></div>
+        <!-- Display the letters guessed -->
+        <div id="guessed-letters"></div>
+    </main>
+
+    <script>
+        // Create a variable to store the word to be guessed from a list of words
+        const words = ['javascript', 'python', 'java', 'html', 'css', 'php', 'ruby', 'csharp', 'swift', 'kotlin'];
+        let word, wordArray, displayArray, guessesLeft, guessedLetters;
+
+        // Function to start a new game
+        function startGame() {
+            // Select a random word from the list of words
+            word = words[Math.floor(Math.random() * words.length)];
+            // Convert word to an array of characters
+            wordArray = word.split('');
+            // Create an array of underscores for display
+            displayArray = wordArray.map(() => '_');
+            // Initialize guesses and guessed letters
+            guessesLeft = 6;
+            guessedLetters = [];
+            // Update the display
+            updateDisplay();
+            // Enable the guess button in case it was disabled
+            document.getElementById('guess-button').disabled = false;
+            document.getElementById('message').textContent = '';
+        }
+
+        // Create a function to update the display
+        function updateDisplay() {
+            // Update the word display (show underscores or correct letters)
+            document.getElementById('word-display').textContent = displayArray.join(' ');
+            // Update the guesses left
+            document.getElementById('guesses-left').textContent = `Guesses Left: ${guessesLeft}`;
+            // Update the guessed letters
+            document.getElementById('guessed-letters').textContent = `Guessed Letters: ${guessedLetters.join(', ')}`;
+        }
+
+        // Create a function to handle guesses
+        function makeGuess() {
+            // Get the input element and store its value
+            let input = document.getElementById('guess-input');
+            let guess = input.value.trim().toLowerCase();
+            // Clear the input field
+            input.value = '';
+
+            // Check if the user entered a valid letter
+            if (!guess.match(/[a-z]/)) {
+                document.getElementById('message').textContent = 'Please enter a letter from A-Z.';
+                return;
+            }
+
+            // Check if the letter has already been guessed
+            if (guessedLetters.includes(guess)) {
+                document.getElementById('message').textContent = 'You have already guessed that letter.';
+                return;
+            }
+
+            // Add the guessed letter to the guessed letters array
+            guessedLetters.push(guess);
+
+            // Check if the letter is in the word
+            if (wordArray.includes(guess)) {
+                // Update the display array with the correct letter
+                wordArray.forEach((letter, index) => {
+                    if (letter === guess) {
+                        displayArray[index] = guess;
+                    }
+                });
+                document.getElementById('message').textContent = 'Correct guess!';
+            } else {
+                // Decrement the guesses left if the guess is incorrect
+                guessesLeft--;
+                document.getElementById('message').textContent = 'Incorrect guess!';
+            }
+
+            // Update the display after the guess
+            updateDisplay();
+
+            // Check for win/lose conditions
+            if (!displayArray.includes('_')) {
+                document.getElementById('message').textContent = 'Congratulations! You are a winner!';
+                document.getElementById('guess-button').disabled = true;
+            } else if (guessesLeft === 0) {
+                document.getElementById('message').textContent = `Game Over! The word was: ${word}`;
+                document.getElementById('guess-button').disabled = true;
+            }
+        }
+
+        // Add a click event listener to the guess button
+        document.getElementById('guess-button').addEventListener('click', makeGuess);
+
+        // Add the "Enter" key event listener for our input
+        document.getElementById('guess-input').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                makeGuess();
+            }
+        });
+
+        // Initialize the game when the page loads
+        startGame();
+
+    </script>
+</body>
+</html>
