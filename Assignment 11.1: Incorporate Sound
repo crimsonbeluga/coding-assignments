@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale-1.0">
+<title>DEMO DJ</title>
+<style>
+Body {
+padding: 20px;
+min-height: 100vh;
+margin: 0;
+background-color:blue;
+font-family: Arial, sans-serif;
+}
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
+
+.player-container{
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1 );
+    margin-bottom: 20px;
+}
+/*style the header*/
+h1{
+    color: yellow;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+h2{
+     color: cadetblue;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+
+    
+}
+
+.song-container {
+background: peachpuff;
+padding:15px ;
+margin: 10px 0;
+border-radius: 5px;
+border: 1px solid #ccc;
+
+
+}
+
+.song-title {
+    font-weight: bold;
+    color: crimson;
+    margin-bottom: 10px;
+
+
+}
+
+audio {
+    margin: 5px 0;
+    width: 100%;
+
+}
+
+@media (max-width: 768px ){
+    .player-container {
+        padding: 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<div class="main-container">
+<h1>DJ Turn Table</h1>
+<div class="player-container">
+    <h2>Holiday music</h2>
+    <div class="song-container">
+        <div class="song-title">Building Dreams</div>
+
+
+    </div>
+
+<audio controls preload="auto">
+
+<source src="Bittersweet Reflections.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+
+</div>
+</body>
+
+</html>
