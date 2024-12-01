@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <!--Logan Green-->  
+<head>
+    <title>Under Water Base Alpha Simulation</title> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>under water base</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styling the image to make it smaller and centered */
+        #base-image {
+            width: 100%; /* Makes the image take up 100% of the width of its container */
+            height: auto; /* Ensures the aspect ratio is maintained */
+            border-radius: 8px; /* Rounds the corners of the image */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adds a shadow around the image */
+            display: block; /* Ensures the image is treated as a block-level element */
+            margin: 0 auto; /* Centers the image horizontally */
+            max-width: 1000px; /* Limits the width to a maximum of 1000px */
+        }
+
+        /* Optional: To add styles to other elements on the page */
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin: 20px;
+        }
+
+        main {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Inserting image using HTML -->
+    <img src="outside-Cropped.avif" alt="Underwater Base Image" id="base-image">
+
+    <script src="script.js"></script>
+    
+    <header>
+        <h1>Welcome To Under Water Base Sigma</h1>
+        <p>Here you will be in charge of an underwater base. You will manage resources, build out the base, and keep your researchers alive.</p>
+    </header>
+    
+    <main id="game-area">
+        <button onclick="simulateDay()">Simulate a Day</button>
+    </main>
+    
+    <script>
+        var energy = 100; // Initial amount that we are starting with
+        var food = 50; // Initial amount of food we have
+        var water = 50; // Initial amount of water we have
+        var population = 10; // Initial amount of researchers
+        var oxygen = 100; //initial amount of oxygen
+        var dayCounter = 0;
+
+        function produceEnergy() {
+            energy += 10;
+        }
+
+        function consumeResources() {
+            food -= population;
+            water -= population;
+            oxygen -= population;
+        }
+
+        function buildModule() {
+            if (energy >= 20) {
+                energy -= 20;
+                population += 5;
+            } else if (oxygen >= 20) {
+                oxygen -= 20;
+                population += 5;
+            }
+        }
+
+        function produceOxygen() {
+            oxygen += 10;
+        }
+
+        function simulateDay() {
+            dayCounter++;
+            document.querySelector("#game-area").innerHTML += "<h2>Day " + dayCounter + "</h2>";
+            document.title = "Simulating Day " + dayCounter;
+
+            buildModule();
+            produceEnergy();
+            consumeResources();
+            produceOxygen();
+
+            if (Math.random() > 0.5) {
+                buildModule();
+            }
+
+            displayStatus();
+        }
+
+        function displayStatus() {
+            var statusHTML = `
+                <h2>Under Water Base Status</h2>
+                <p>Energy: ${energy}</p>
+                <p>Food: ${food}</p>
+                <p>Water: ${water}</p>
+                <p>Population: ${population}</p>
+                <p>Oxygen: ${oxygen}</p>
+            `;
+            document.querySelector("#game-area").innerHTML += statusHTML;
+        }
+    </script>
+</body>
+</html>
