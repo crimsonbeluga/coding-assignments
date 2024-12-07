@@ -1,0 +1,109 @@
+<!--we are going to create an example of a table-->
+<!DOCTYPE html>
+<htm lang="en">
+    <head>
+        <!--make this responsive-->
+        <meta name ="viewport" content="width=device-width, intitial-scale=1.0">
+
+
+ <!--Title is going to go here-->
+<title>Table example</title>
+<!--style the page and table-->
+<style>
+table{
+    border:  solid blue;
+}
+
+td{border: 1px solid green;
+    padding: 10px; 
+}
+
+th{
+    border: 1px solid red;
+    padding: 10px;
+    background-color: lightgray;
+}
+
+
+</style>
+    </head>
+    <body>
+<h1>Table example </h1>
+<h3> Column and row examples with a border</h3>
+<table>
+<!--each table has one table tag opening and closing and you can have as many table tags as you want (you could nest tables seacrh more about that)-->
+<!-- this is the abbreviation for table row-->
+<tr>  <td>column 1 row 1</td>
+<td>column 2 row 1</td>
+</tr>
+<!--TD stands for table data-->
+<tr></tr>
+<td>
+    column 1 row 2
+</td>
+<td>column 2 row 2</td>
+</tr>
+
+
+
+</table>   
+
+<br> <br>
+<h3>Table example of a list of ships</h3>
+<table>
+    <!--each table has one table tag opening and closing and you can have as many table tags as you want (you could nest tables seacrh more about that)-->
+    <!-- this is the abbreviation for table row-->
+    <tr>  <th>Ship Name</th>
+    <th> Ship type</th>
+    </tr>
+    <!--TD stands for table data-->
+    <tr></tr>
+    <td>
+       vengence
+    </td>
+    <td>star destroyer</td>
+    </tr>
+    <tr></tr>
+    <td>
+       Quandale
+    </td>
+    <td>x wing</td>
+    </tr>
+    <tr></tr>
+    <td>
+       finkle
+    </td>
+    <td>y wing</td>
+    </tr>
+    
+    
+    
+    </table>   
+
+<table>
+    <tr>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+    </tr>
+    <tr>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+    </tr><tr>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+    </tr><tr>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+    </tr><tr>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+        <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+    </tr>
+</table>
+ </body>
+
+    </html>
